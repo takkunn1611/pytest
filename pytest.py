@@ -1,22 +1,21 @@
-'''Print args
 '''
-import argparse
+Print args.
+
+Usage:
+	pytest.py MSGS...
+	pytest.py (-h | --help)
+	
+Options:
+	-h	--help	show help
+'''
+
+from docopt import docopt
 import sys
 
-def main(args):
-	p = argparse.ArgumentParser(
-		description=__doc__
-	)
-	p.add_argument(
-		'msgs',
-		action='store',
-		nargs='*',
-		help='msgs to print'
-	)
+def main(argv):
+	args = docopt(__doc__, argv=argv)
 	
-	ns = p.parse_args(args)
-	
-	for msg in ns.msgs:
+	for msg in args['MSGS']:
 		print(msg)
 	
 	return 0
